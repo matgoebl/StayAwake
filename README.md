@@ -1,6 +1,8 @@
-# StayAwake
+# StayAwake-Scheduled
 
 An application for Android to keep device screen on.
+This version automatically activates itself from 6:00 until 22:00.
+It is intended for android devices used as information display.
 
 
 ## License

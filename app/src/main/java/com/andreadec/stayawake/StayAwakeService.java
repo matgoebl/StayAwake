@@ -44,9 +44,10 @@ public class StayAwakeService extends Service {
         builder.setSmallIcon(R.drawable.ic_wb_sunny_black_24dp);
         builder.setContentTitle(getString(R.string.running));
         builder.setContentText(getString(R.string.running));
-        builder.setContentIntent(notificationPendingIntent);
-        builder.addAction(R.drawable.ic_stop_black_24dp, getString(R.string.stop), stopPendingIntent);
-        notification = builder.build();
+        builder.setContentIntent(stopPendingIntent);
+//        builder.setContentIntent(notificationPendingIntent);
+//        builder.addAction(R.drawable.ic_stop_black_24dp, getString(R.string.stop), stopPendingIntent);
+        notification = builder.getNotification();
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_STOP);
@@ -73,7 +74,8 @@ public class StayAwakeService extends Service {
             return START_NOT_STICKY;
         }
 
-        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, WAKELOCK_TAG);
+//        wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, WAKELOCK_TAG);
+        wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, WAKELOCK_TAG);
         wakeLock.acquire();
 
         //System.out.println("START");
